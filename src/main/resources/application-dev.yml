@@ -1,5 +1,7 @@
 paypal:
+  name: HelpNowEatLater
   account:
   client-id:
   mode: sandbox
   secret:
+  url:
