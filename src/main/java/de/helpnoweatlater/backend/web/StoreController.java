@@ -2,13 +2,25 @@ package de.helpnoweatlater.backend.web;
 
 import de.helpnoweatlater.backend.domain.Store;
 import de.helpnoweatlater.backend.service.StoreService;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.server.RequestPredicates;
+import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.servlet.function.HandlerFunction;
+import org.springframework.web.servlet.function.RouterFunction;
+import org.springframework.web.servlet.function.ServerResponse;
 
-@RestController
-@RequestMapping("/stores")
+import java.util.function.Function;
+
+import static org.springframework.web.servlet.function.RequestPredicates.GET;
+import static org.springframework.web.servlet.function.RequestPredicates.POST;
+import static org.springframework.web.servlet.function.RouterFunctions.route;
+import static org.springframework.web.servlet.function.ServerResponse.ok;
+
+@Configuration
 public class StoreController {
+
+    private static String STORE_PATH_PREFIX = "/stores";
 
     private final StoreService storeService;
 
@@ -16,26 +28,30 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    @GetMapping
-    public Flux<Store> retrieveAll(){
-        return storeService.retrieveAll();
+    @Bean
+    RouterFunction<ServerResponse> retrieveAllStores() {
+        return route(GET(STORE_PATH_PREFIX),
+                request -> ok().body(storeService.retrieveAll()));
     }
 
-    @GetMapping("/{id}")
-    public Mono<Store> retrieveById(@PathVariable final String id){
-        return storeService.retrieveById(id);
+    @Bean
+    RouterFunction<ServerResponse> retrieveStoreById(){
+        return route(GET(STORE_PATH_PREFIX + "/{id}"),
+                request -> ok().body(storeService.retrieveById(request.pathVariable("id"))));
     }
 
-    @PostMapping
-    public Mono<Store> create(@RequestBody Store store){
-        return storeService.create(store);
+    @Bean
+    RouterFunction<ServerResponse> createStore() {
+        return route(POST(STORE_PATH_PREFIX),
+                request -> ok().body(storeService.create(request.body(Store.class))));
     }
 
-    @PutMapping("/{id}")
-    public Mono<Store> update(@RequestBody Store store, @PathVariable final String id){
-        return storeService.update(store, id);
+    @Bean
+    RouterFunction<ServerResponse> updateStore() {
+        return route(GET(STORE_PATH_PREFIX + "/{id}"),
+                request -> ok().body(storeService.update(
+                        request.body(Store.class),
+                        request.pathVariable("id"))));
     }
-
-
 
 }
