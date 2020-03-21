@@ -6,7 +6,7 @@ public enum StoreType {
     SHOP("SHOP");
 
 
-    private String value;
+    private final String value;
 
     StoreType(String value){
         this.value = value;
