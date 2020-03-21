@@ -6,11 +6,13 @@ import de.helpnoweatlater.backend.web.exception.EntityNotFoundException;
 import de.helpnoweatlater.backend.web.exception.OperationNotSupportedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
 
 @Service
-public class StoreService implements CrudService<Store, String> {
+public class StoreService implements ReactiveCrudService<Store, String> {
 
     private final StoreRepository storeRepository;
 
@@ -20,29 +22,28 @@ public class StoreService implements CrudService<Store, String> {
     }
 
     @Override
-    public Store create(Store store) {
+    public Mono<Store> create(Store store) {
         return storeRepository.save(store);
     }
 
     @Override
-    public Store retrieveById(final String id) {
-        return storeRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(HttpStatus.NOT_FOUND, EntityNotFoundException.DEFAULT_EXCEPTION_MESSAGE));
+    public Mono<Store> retrieveById(final String id) {
+        return storeRepository.findById(id);
     }
 
     @Override
-    public Collection<Store> retrieveAll() {
+    public Flux<Store> retrieveAll() {
         return storeRepository.findAll();
     }
 
     @Override
-    public Store update(Store store, final String id) {
+    public Mono<Store> update(Store store, final String id) {
         // TODO
         throw new OperationNotSupportedException(HttpStatus.NOT_FOUND, OperationNotSupportedException.DEFAULT_EXCEPTION_MESSAGE);
     }
 
     @Override
-    public Store updatePartial(Store store, final String id) {
+    public Mono<Store> updatePartial(Store store, final String id) {
         // TODO
         throw new OperationNotSupportedException(HttpStatus.NOT_FOUND, OperationNotSupportedException.DEFAULT_EXCEPTION_MESSAGE);
     }
