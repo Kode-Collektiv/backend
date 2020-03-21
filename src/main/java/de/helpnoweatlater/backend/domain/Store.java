@@ -20,4 +20,8 @@ public class Store extends AbstractEntity {
 
     @CreationTimestamp
     private Date createdAt;
+
+    private StoreType storeType;
+
+
 }
