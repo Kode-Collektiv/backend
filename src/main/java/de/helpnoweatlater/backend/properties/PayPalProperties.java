@@ -9,9 +9,10 @@ public class PayPalProperties {
 
     private String name;
 
+    /**
+     * mode options: sandbox or live
+     * */
     private String mode = "sandbox";
-
-    private String account;
 
     private String secret;
 
@@ -19,6 +20,9 @@ public class PayPalProperties {
 
     private String url;
 
+    private String successUrl;
+
+    private String failureUrl;
 
     public String getName() {
         return name;
@@ -28,28 +32,12 @@ public class PayPalProperties {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getMode() {
         return mode;
     }
 
     public void setMode(String mode) {
         this.mode = mode;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     public String getSecret() {
@@ -66,5 +54,29 @@ public class PayPalProperties {
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getSuccessUrl() {
+        return successUrl;
+    }
+
+    public void setSuccessUrl(String successUrl) {
+        this.successUrl = successUrl;
+    }
+
+    public String getFailureUrl() {
+        return failureUrl;
+    }
+
+    public void setFailureUrl(String failureUrl) {
+        this.failureUrl = failureUrl;
     }
 }
