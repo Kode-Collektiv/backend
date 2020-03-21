@@ -1,6 +1,5 @@
 package de.helpnoweatlater.backend.domain;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -15,15 +14,17 @@ public class Voucher {
 
     private final Date createdAt;
 
-    private final Date expiresAt;
-
     private final boolean verified;
 
-    public Voucher(Store store, User issuedFor, Date createdAt, Date expiresAt, boolean verified) {
+    public static Voucher of(final Store store, final User issuedFor, final Date createdAt, final boolean verified){
+        return new Voucher(store, issuedFor, createdAt, verified);
+    }
+
+    private Voucher(Store store, User issuedFor, Date createdAt, boolean verified) {
         this.store = store;
         this.issuedFor = issuedFor;
         this.createdAt = createdAt;
-        this.expiresAt = expiresAt;
+
         this.verified = verified;
     }
 
@@ -37,10 +38,6 @@ public class Voucher {
 
     public Date getCreatedAt() {
         return createdAt;
-    }
-
-    public Date getExpiresAt() {
-        return expiresAt;
     }
 
     public boolean isVerified() {

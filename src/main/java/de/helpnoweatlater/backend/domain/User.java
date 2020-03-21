@@ -1,10 +1,5 @@
 package de.helpnoweatlater.backend.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.Email;
-
-@Document
 public class User {
 
 
@@ -12,15 +7,28 @@ public class User {
 
     private final String lastName;
 
-    @Email
     private final String email;
 
 
+    public static User of(final String firstName, final String lastName, final String email){
+        return new User(firstName, lastName, email);
+    }
 
-    public User(String firstName, String lastName, @Email String email) {
+    private User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

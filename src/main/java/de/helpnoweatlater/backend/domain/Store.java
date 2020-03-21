@@ -1,6 +1,6 @@
 package de.helpnoweatlater.backend.domain;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -10,19 +10,21 @@ public class Store extends AbstractDocument  {
 
     private final String name;
 
-    private final User owner;
+    private final StoreContact storeContact;
 
-    private final Address address;
-
+    @CreatedDate
     private final Date createdAt;
 
     private final StoreType storeType;
 
-    public Store(String id, String name, User owner, Address address, Date createdAt, StoreType storeType) {
-        super(id);
+
+    public static Store of(final String name, final StoreContact storeContact, final Date createdAt, final StoreType storeType){
+        return new Store(name, storeContact, createdAt, storeType);
+    }
+
+    private Store(String name, StoreContact storeContact, Date createdAt, StoreType storeType) {
         this.name = name;
-        this.owner = owner;
-        this.address = address;
+        this.storeContact = storeContact;
         this.createdAt = createdAt;
         this.storeType = storeType;
     }
@@ -31,16 +33,8 @@ public class Store extends AbstractDocument  {
         return name;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
+    public StoreContact getStoreContact() {
+        return storeContact;
     }
 
     public StoreType getStoreType() {
