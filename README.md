@@ -11,7 +11,7 @@ docker build . backend:latest
 =======
 all public, no registration necessary or OpenId provider (e.g. google, facebook)?
 
-- [ ] public API
+- [x] public API
 - [ ] with User (OpenID)
 
 ## what's avaiable
@@ -50,6 +50,8 @@ Voucher
 - creationDate
 - storeID
 - ?digital (yes/no)
+
+
 
 
   
