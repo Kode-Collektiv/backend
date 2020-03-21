@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "paypal")
 public class PayPalProperties {
 
+    private String name;
+
     private String mode = "sandbox";
 
     private String account;
@@ -14,6 +16,25 @@ public class PayPalProperties {
     private String secret;
 
     private String clientId;
+
+    private String url;
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getMode() {
         return mode;
