@@ -1,0 +1,21 @@
+name: build
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: build and push image
+      run: |
+        docker login docker.pkg.github.com --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_PASSWORD }}
+        docker build . --file Dockerfile --tag docker.pkg.github.com/kode-collektiv/backend/backend:latest
+        docker push docker.pkg.github.com/kode-collektiv/backend/backend:latest
+      env:
+        CI: true
+
