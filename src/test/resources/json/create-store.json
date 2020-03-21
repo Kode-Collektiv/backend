@@ -1,0 +1,16 @@
+{
+  "name": "Sample Store",
+  "owner": {
+    "firstName": "Joshua",
+    "lastName": "Sattler",
+    "email": "mail@sattlerjoshua.de"
+  },
+  "address": {
+    "city": "Giessen",
+    "country": "DE",
+    "zipCode": "35390",
+    "street": "Schuppstr.",
+    "streetNumber": "2"
+  },
+  "storeType": "COFFEE_STORE"
+}
