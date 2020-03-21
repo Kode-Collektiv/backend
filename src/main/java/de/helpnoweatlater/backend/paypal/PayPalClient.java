@@ -3,6 +3,7 @@ package de.helpnoweatlater.backend.paypal;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
+import de.helpnoweatlater.backend.properties.PayPalProperties;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +15,12 @@ import java.util.Map;
 @Service
 public class PayPalClient {
 
-    PayPalClient() {
+    private final PayPalProperties payPalProperties;
+
+    PayPalClient(PayPalProperties payPalProperties) {
+        this.payPalProperties = payPalProperties;
     }
 
-    private String clientId = "xxx";
-    private String clientSecret = "xxx";
 
     public Map<String, Object> createPayment(String sum) {
         Map<String, Object> response = new HashMap<String, Object>();
@@ -45,7 +47,7 @@ public class PayPalClient {
         Payment createdPayment;
         try {
             String redirectUrl = "";
-            APIContext context = new APIContext(clientId, clientSecret, "sandbox");
+            APIContext context = new APIContext(payPalProperties.getClientId(), payPalProperties.getSecret(), payPalProperties.getMode());
             createdPayment = payment.create(context);
             if (createdPayment != null) {
                 List<Links> links = createdPayment.getLinks();
@@ -72,7 +74,7 @@ public class PayPalClient {
         PaymentExecution paymentExecution = new PaymentExecution();
         paymentExecution.setPayerId(req.getParameter("PayerID"));
         try {
-            APIContext context = new APIContext(clientId, clientSecret, "sandbox");
+            APIContext context = new APIContext(payPalProperties.getClientId(), payPalProperties.getSecret(), payPalProperties.getMode());
             Payment createdPayment = payment.execute(context, paymentExecution);
             if(createdPayment!=null){
                 response.put("status", "success");
