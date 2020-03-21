@@ -5,7 +5,6 @@ import de.helpnoweatlater.backend.service.StoreService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/stores")
@@ -23,7 +22,7 @@ public class StoreController {
     }
 
     @GetMapping("/{id}")
-    public Store retrieveById(@PathVariable final UUID id){
+    public Store retrieveById(@PathVariable final String id){
         return storeService.retrieveById(id);
     }
 
@@ -32,9 +31,9 @@ public class StoreController {
         return storeService.create(store);
     }
 
-    @PutMapping("/{uuid}")
-    public Store update(@RequestBody Store store, @PathVariable final UUID uuid){
-        return storeService.update(store, uuid);
+    @PutMapping("/{id}")
+    public Store update(@RequestBody Store store, @PathVariable final String id){
+        return storeService.update(store, id);
     }
 
 

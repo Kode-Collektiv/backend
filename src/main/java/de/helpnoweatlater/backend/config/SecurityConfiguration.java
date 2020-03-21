@@ -1,8 +1,7 @@
 package de.helpnoweatlater.backend.config;
 
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration {
     // TODO: CORS, API Endpoint
+
 
 }

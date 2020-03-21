@@ -1,9 +1,8 @@
 package de.helpnoweatlater.backend.domain;
 
-import javax.persistence.Embeddable;
 import java.util.Locale;
 
-@Embeddable
+
 public class Address {
 
     private String city;
@@ -12,4 +11,43 @@ public class Address {
     private String street;
     private String streetNumber;
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Locale getCountry() {
+        return country;
+    }
+
+    public void setCountry(Locale country) {
+        this.country = country;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
 }

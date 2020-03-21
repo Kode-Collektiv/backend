@@ -1,26 +1,49 @@
 package de.helpnoweatlater.backend.domain;
 
-import jdk.jfr.Enabled;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import java.util.Date;
 
-@Entity
-public class Voucher extends AbstractEntity {
+@Document
+public class Voucher {
 
-    @ManyToOne
-    private Store store;
 
-    @ManyToOne
-    private User issuedFor;
+    private final Store store;
 
-    @CreationTimestamp
-    private Date createdAt;
+    private final User issuedFor;
 
-    private Date expiresAt;
+    private final Date createdAt;
 
-    private boolean verified;
+    private final Date expiresAt;
 
+    private final boolean verified;
+
+    public Voucher(Store store, User issuedFor, Date createdAt, Date expiresAt, boolean verified) {
+        this.store = store;
+        this.issuedFor = issuedFor;
+        this.createdAt = createdAt;
+        this.expiresAt = expiresAt;
+        this.verified = verified;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public User getIssuedFor() {
+        return issuedFor;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getExpiresAt() {
+        return expiresAt;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
 }

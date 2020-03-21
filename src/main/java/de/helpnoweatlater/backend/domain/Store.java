@@ -1,27 +1,49 @@
 package de.helpnoweatlater.backend.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import java.util.Date;
 
-@Entity
-public class Store extends AbstractEntity {
+@Document
+public class Store extends AbstractDocument  {
 
-    private String name;
+    private final String name;
 
-    @OneToOne
-    private User owner;
+    private final User owner;
 
-    private Address address;
+    private final Address address;
 
-    @CreationTimestamp
-    private Date createdAt;
+    private final Date createdAt;
 
-    private StoreType storeType;
+    private final StoreType storeType;
 
+    public Store(String id, String name, User owner, Address address, Date createdAt, StoreType storeType) {
+        super(id);
+        this.name = name;
+        this.owner = owner;
+        this.address = address;
+        this.createdAt = createdAt;
+        this.storeType = storeType;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public StoreType getStoreType() {
+        return storeType;
+    }
 }

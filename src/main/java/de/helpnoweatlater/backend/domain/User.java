@@ -1,15 +1,26 @@
 package de.helpnoweatlater.backend.domain;
 
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.Email;
 
-@Entity
-public class User extends AbstractEntity {
+@Document
+public class User {
 
-    private String firstName;
-    private String lastName;
+
+    private final String firstName;
+
+    private final String lastName;
 
     @Email
-    private String email;
+    private final String email;
+
+
+
+    public User(String firstName, String lastName, @Email String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
 }
