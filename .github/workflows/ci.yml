@@ -16,6 +16,15 @@ jobs:
         docker login docker.pkg.github.com --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_PASSWORD }}
         docker build . --file Dockerfile --tag docker.pkg.github.com/kode-collektiv/backend/backend:latest
         docker push docker.pkg.github.com/kode-collektiv/backend/backend:latest
+
+    - name: ls -a via ssh
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: ls -a
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.HOST_USER }}
+        passphrase: ${{ secrets.HOST_PASSPHRASE }}
+
       env:
         CI: true
 
