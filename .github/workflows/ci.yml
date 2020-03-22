@@ -26,7 +26,10 @@ jobs:
         username: ${{ secrets.HOST_USER }}
         password: ${{ secrets.HOST_PASSPHRASE }}
         port: 22
-        script: whoami
+        script: |
+          docker login docker.pkg.github.com --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_PASSWORD }}
+          docker-compose -f /srv/giessenteiltaus/docker-compose.yml pull
+          docker-compose -f /srv/giessenteiltaus/docker-compose.yml restart
 
       env:
         CI: true
