@@ -26,7 +26,7 @@ jobs:
         host: ${{ secrets.HOST_IP }}
         username: ${{ secrets.HOST_USER }}
         passphrase: ${{ secrets.HOST_PASSPHRASE }}
-        privateKey: ${{ secrets.HOST_PRIVATE_KEY}}
+        tryKeyboard: true
 
       env:
         CI: true
