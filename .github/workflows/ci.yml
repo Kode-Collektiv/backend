@@ -20,13 +20,13 @@ jobs:
         docker push docker.pkg.github.com/kode-collektiv/backend/backend:latest
 
     - name: Pull docker images and restart container
-      uses: garygrossgarten/github-action-ssh@release
+      uses: appleboy/ssh-action@master
       with:
-        command: ls -a
         host: ${{ secrets.HOST_IP }}
         username: ${{ secrets.HOST_USER }}
-        passphrase: ${{ secrets.HOST_PASSPHRASE }}
-        tryKeyboard: true
+        password: ${{ secrets.HOST_PASSPHRASE }}
+        port: 22
+        script: whoami
 
       env:
         CI: true
