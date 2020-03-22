@@ -1,6 +1,19 @@
 paypal:
-  name: HelpNowEatLater
+  name:
   client-id:
-  mode: sandbox
+  mode:
   secret:
   url:
+spring:
+  mail:
+    host:
+    port:
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth:
+          starttls:
+            enable:
+    protocol:
