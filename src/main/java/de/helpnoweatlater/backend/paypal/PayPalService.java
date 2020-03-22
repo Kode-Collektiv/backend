@@ -1,9 +1,8 @@
-package de.helpnoweatlater.backend.service;
+package de.helpnoweatlater.backend.paypal;
 
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
-import de.helpnoweatlater.backend.properties.PayPalProperties;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

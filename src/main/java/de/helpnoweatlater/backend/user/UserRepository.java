@@ -1,6 +1,5 @@
-package de.helpnoweatlater.backend.repository;
+package de.helpnoweatlater.backend.user;
 
-import de.helpnoweatlater.backend.domain.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 public interface UserRepository extends ReactiveMongoRepository<User, String> {

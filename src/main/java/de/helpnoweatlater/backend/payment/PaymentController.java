@@ -1,10 +1,9 @@
-package de.helpnoweatlater.backend.web;
+package de.helpnoweatlater.backend.payment;
 
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
-import de.helpnoweatlater.backend.domain.Donation;
-import de.helpnoweatlater.backend.service.PayPalService;
+import de.helpnoweatlater.backend.paypal.PayPalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -32,12 +31,12 @@ public class PaymentController {
     @PostMapping("/donation")
     public Mono<Void> createDonation(@RequestBody Donation donation, ServerHttpResponse serverHttpResponse) {
         try {
-            Payment payment = payPalService.createPayment(donation.getTotal(), DEFAULT_CURRENCY, DEFAULT_METHOD, "Intent", donation.getDescription());
+            Payment payment = payPalService.createPayment(donation.getTotal(), DEFAULT_CURRENCY, DEFAULT_METHOD, "sale", donation.getDescription());
             Links redirect = payment.getLinks()
                     .stream()
                     .filter(l -> l.getRel().equals("approval_url"))
                     .findFirst().get();
-            serverHttpResponse.setStatusCode(HttpStatus.PERMANENT_REDIRECT);
+            serverHttpResponse.setStatusCode(HttpStatus.TEMPORARY_REDIRECT);
             serverHttpResponse.getHeaders().setLocation(URI.create(redirect.getHref()));
             return serverHttpResponse.setComplete();
         } catch (PayPalRESTException e) {
@@ -51,15 +50,15 @@ public class PaymentController {
 
     @GetMapping("/success")
     public Mono<Void> paymentSuccessCallback(ServerHttpResponse serverHttpResponse) {
-        serverHttpResponse.setStatusCode(HttpStatus.PERMANENT_REDIRECT);
-        serverHttpResponse.getHeaders().setLocation(URI.create("http://www.google.de"));
+        serverHttpResponse.setStatusCode(HttpStatus.TEMPORARY_REDIRECT);
+        serverHttpResponse.getHeaders().setLocation(URI.create("http://www.bosch.de"));
         return serverHttpResponse.setComplete();
     }
 
     @GetMapping("/failure")
     public Mono<Void> paymentFailureCallback(ServerHttpResponse serverHttpResponse) {
-        serverHttpResponse.setStatusCode(HttpStatus.PERMANENT_REDIRECT);
-        serverHttpResponse.getHeaders().setLocation(URI.create("http://www.google.de"));
+        serverHttpResponse.setStatusCode(HttpStatus.TEMPORARY_REDIRECT);
+        serverHttpResponse.getHeaders().setLocation(URI.create("http://www.paypal.com"));
         return serverHttpResponse.setComplete();
     }
 

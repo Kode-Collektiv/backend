@@ -1,4 +1,4 @@
-package de.helpnoweatlater.backend.service;
+package de.helpnoweatlater.backend.common;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -9,7 +9,7 @@ public interface ReactiveCrudService<T, ID> {
 
     Mono<T> create(T t);
 
-    Mono<T> retrieveById(final ID id);
+    Mono<T> retrieve(final ID id);
 
     Flux<T> retrieveAll();
 
@@ -17,5 +17,5 @@ public interface ReactiveCrudService<T, ID> {
 
     Mono<T> updatePartial(T t, final ID id);
 
-    void deleteById(final ID id);
+    Mono<Void> deleteById(final ID id);
 }

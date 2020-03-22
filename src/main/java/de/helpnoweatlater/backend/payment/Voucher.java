@@ -1,14 +1,19 @@
-package de.helpnoweatlater.backend.domain;
+package de.helpnoweatlater.backend.payment;
 
+import de.helpnoweatlater.backend.store.Store;
+import de.helpnoweatlater.backend.user.User;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @Document
-public class Voucher extends AbstractDocument {
+public class Voucher {
 
 
+    @Id
+    private final String id;
     @DBRef
     private final Store store;
 
@@ -19,16 +24,20 @@ public class Voucher extends AbstractDocument {
 
     private final boolean verified;
 
-    public static Voucher of(final Store store, final User issuedFor, final Date createdAt, final boolean verified){
-        return new Voucher(store, issuedFor, createdAt, verified);
+    public static Voucher of(final String id, final Store store, final User issuedFor, final Date createdAt, final boolean verified){
+        return new Voucher(id, store, issuedFor, createdAt, verified);
     }
 
-    private Voucher(Store store, User issuedFor, Date createdAt, boolean verified) {
+    private Voucher(String id, Store store, User issuedFor, Date createdAt, boolean verified) {
+        this.id = id;
         this.store = store;
         this.issuedFor = issuedFor;
         this.createdAt = createdAt;
-
         this.verified = verified;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Store getStore() {
