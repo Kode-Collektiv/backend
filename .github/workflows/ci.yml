@@ -29,7 +29,8 @@ jobs:
         script: |
           docker login docker.pkg.github.com --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_PASSWORD }}
           docker-compose -f /srv/giessenteiltaus/docker-compose.yml pull
-          docker-compose -f /srv/giessenteiltaus/docker-compose.yml up -d --no-deps service
+          docker-compose -f /srv/giessenteiltaus/docker-compose.yml rm --force
+          docker-compose -f /srv/giessenteiltaus/docker-compose.yml up -d
 
       env:
         CI: true
