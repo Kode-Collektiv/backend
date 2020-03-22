@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Pull repo
+      uses: actions/checkout@v1
+
     - name: build and push image
       run: |
         docker login docker.pkg.github.com --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_PASSWORD }}
