@@ -21,7 +21,7 @@ jobs:
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: ls -a
-        host: ${{ secrets.HOST }}
+        host: ${{ secrets.HOST_IP }}
         username: ${{ secrets.HOST_USER }}
         passphrase: ${{ secrets.HOST_PASSPHRASE }}
 
