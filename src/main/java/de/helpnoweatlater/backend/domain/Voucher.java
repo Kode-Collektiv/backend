@@ -1,15 +1,18 @@
 package de.helpnoweatlater.backend.domain;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @Document
-public class Voucher {
+public class Voucher extends AbstractDocument {
 
 
+    @DBRef
     private final Store store;
 
+    @DBRef
     private final User issuedFor;
 
     private final Date createdAt;

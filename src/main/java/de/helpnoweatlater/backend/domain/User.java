@@ -1,6 +1,9 @@
 package de.helpnoweatlater.backend.domain;
 
-public class User {
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class User extends AbstractDocument{
 
 
     private final String firstName;
