@@ -1,7 +1,7 @@
-package de.helpnoweatlater.backend.config;
+package de.helpnoweatlater.backend.paypal;
 
 import com.paypal.base.rest.APIContext;
-import de.helpnoweatlater.backend.properties.PayPalProperties;
+import de.helpnoweatlater.backend.paypal.PayPalProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

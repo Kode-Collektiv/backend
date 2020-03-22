@@ -1,4 +1,4 @@
-package de.helpnoweatlater.backend.properties;
+package de.helpnoweatlater.backend.paypal;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

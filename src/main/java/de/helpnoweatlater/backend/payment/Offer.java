@@ -1,4 +1,4 @@
-package de.helpnoweatlater.backend.domain;
+package de.helpnoweatlater.backend.payment;
 
 import org.springframework.data.annotation.CreatedDate;
 

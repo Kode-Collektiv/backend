@@ -1,4 +1,4 @@
-package de.helpnoweatlater.backend.domain;
+package de.helpnoweatlater.backend.store;
 
 public enum StoreType {
     COFFEE_STORE("COFFEE_STORE"),

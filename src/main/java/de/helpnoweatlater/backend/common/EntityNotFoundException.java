@@ -1,4 +1,4 @@
-package de.helpnoweatlater.backend.web.exception;
+package de.helpnoweatlater.backend.common;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

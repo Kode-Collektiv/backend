@@ -1,6 +1,5 @@
-package de.helpnoweatlater.backend.repository;
+package de.helpnoweatlater.backend.store;
 
-import de.helpnoweatlater.backend.domain.Store;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 public interface StoreRepository extends ReactiveMongoRepository<Store, String> {

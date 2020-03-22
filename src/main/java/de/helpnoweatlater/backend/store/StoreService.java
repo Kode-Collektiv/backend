@@ -1,15 +1,13 @@
-package de.helpnoweatlater.backend.service;
+package de.helpnoweatlater.backend.store;
 
-import de.helpnoweatlater.backend.domain.Store;
-import de.helpnoweatlater.backend.repository.StoreRepository;
-import de.helpnoweatlater.backend.web.exception.EntityNotFoundException;
-import de.helpnoweatlater.backend.web.exception.OperationNotSupportedException;
+import de.helpnoweatlater.backend.common.ReactiveCrudService;
+import de.helpnoweatlater.backend.common.OperationNotSupportedException;
+import org.reactivestreams.Subscriber;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Collection;
 
 @Service
 public class StoreService implements ReactiveCrudService<Store, String> {
@@ -27,7 +25,7 @@ public class StoreService implements ReactiveCrudService<Store, String> {
     }
 
     @Override
-    public Mono<Store> retrieveById(final String id) {
+    public Mono<Store> retrieve(final String id) {
         return storeRepository.findById(id);
     }
 
@@ -49,7 +47,7 @@ public class StoreService implements ReactiveCrudService<Store, String> {
     }
 
     @Override
-    public void deleteById(final String id) {
-        storeRepository.deleteById(id);
+    public Mono<Void> deleteById(final String id) {
+        return storeRepository.deleteById(id);
     }
 }
