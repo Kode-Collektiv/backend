@@ -22,6 +22,9 @@ public class PaymentHandler {
     public Mono<ServerResponse> verifyPayment(ServerRequest request) {
         return Mono
                 .from(payPalService.verifyPayment(request.pathVariable("id")))
+                .doOnError(p -> ServerResponse
+                        .notFound()
+                        .build())
                 .flatMap(p -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)
