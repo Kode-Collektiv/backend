@@ -16,6 +16,8 @@ public class PayPalProperties {
 
     private String secret;
 
+    private String accessToken;
+
     private String clientId;
 
     private String url;
@@ -78,5 +80,13 @@ public class PayPalProperties {
 
     public void setFailureUrl(String failureUrl) {
         this.failureUrl = failureUrl;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 }
