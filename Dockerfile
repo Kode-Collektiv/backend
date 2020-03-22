@@ -16,8 +16,8 @@ RUN mvn -f /srv/backend/pom.xml clean package -DskipTests
 
 FROM openjdk:11.0-slim
 
-COPY --from=build /srv/backend/target/backend-0.0.1-SNAPSHOT.jar /srv/backend/backend-0.0.1-SNAPSHOT.jar
+COPY --from=build /srv/backend/target/backend-0.1.0-SNAPSHOT.jar /srv/backend/backend-0.1.0-SNAPSHOT.jar
 
 EXPOSE 9090
 
-ENTRYPOINT ["java","-jar","/srv/backend/backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/srv/backend/backend-0.1.0-SNAPSHOT.jar"]
