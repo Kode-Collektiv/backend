@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>de.helpnoweatlater</groupId>
 	<artifactId>backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>backend</name>
 	<description>Backend Project for help now eat later</description>
 
@@ -19,7 +19,6 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>checkout-sdk</artifactId>

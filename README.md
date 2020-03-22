@@ -8,7 +8,7 @@ API for help now eat later
 ```
 docker build . backend:latest
 ```
-=======
+
 all public, no registration necessary or OpenId provider (e.g. google, facebook)?
 
 - [x] public API
