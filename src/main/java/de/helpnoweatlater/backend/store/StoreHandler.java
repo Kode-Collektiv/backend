@@ -59,7 +59,7 @@ public class StoreHandler {
         return Mono
                 .from(store)
                 .flatMap(p -> ServerResponse
-                        .created(URI.create("/profiles/" + p.getId()))
+                        .created(URI.create("/stores/" + p.getId()))
                         .contentType(MediaType.APPLICATION_JSON)
                         .build());
     }

@@ -1,4 +1,4 @@
-package de.helpnoweatlater.backend.payment;
+package de.helpnoweatlater.backend.voucher;
 
 import de.helpnoweatlater.backend.store.Store;
 import de.helpnoweatlater.backend.user.User;
