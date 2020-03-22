@@ -13,13 +13,13 @@ jobs:
     - name: Pull repo
       uses: actions/checkout@v1
 
-    - name: build and push image
+    - name: Build and push image
       run: |
         docker login docker.pkg.github.com --username ${{ secrets.GITHUB_USERNAME }} --password ${{ secrets.GITHUB_PASSWORD }}
         docker build . --file Dockerfile --tag docker.pkg.github.com/kode-collektiv/backend/backend:latest
         docker push docker.pkg.github.com/kode-collektiv/backend/backend:latest
 
-    - name: ls -a via ssh
+    - name: Pull docker images and restart container
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: ls -a
